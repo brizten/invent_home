@@ -47,7 +47,7 @@ app/
 └── main.py            # Точка входа FastAPI
 inventory.db           # База SQLite (по умолчанию)
 GitHub
-
+```
 Описание
 Это простое и функциональное API на FastAPI, которое позволяет:
 
