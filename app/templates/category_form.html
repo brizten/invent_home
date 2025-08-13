@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ 'Новая категория' if not category else 'Редактирование категории' }}</h2>
+<form method="post" class="grid" style="grid-template-columns: 1fr; gap: .75rem; max-width:520px;">
+  <div>
+    <label>Название *</label>
+    <input type="text" name="name" value="{{ category.name if category else '' }}" required />
+  </div>
+  <div>
+    <label>Описание</label>
+    <textarea name="description" rows="3">{{ category.description if category else '' }}</textarea>
+  </div>
+  <div class="row">
+    <button class="btn" type="submit">Сохранить</button>
+    <a class="btn ghost" href="/categories">Отмена</a>
+  </div>
+</form>
+{% endblock %}

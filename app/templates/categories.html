@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Категории</h2>
+<table>
+  <thead><tr><th>Название</th><th>Описание</th><th></th></tr></thead>
+  <tbody>
+    {% for c in categories %}
+    <tr>
+      <td class="bold">{{ c.name }}</td>
+      <td>{{ c.description or '—' }}</td>
+      <td class="nowrap">
+        <a class="btn" href="/categories/{{ c.id }}/edit">Изм.</a>
+        <form action="/categories/{{ c.id }}/delete" method="post" style="display:inline" onsubmit="return confirm('Удалить категорию? Связанные вещи останутся без категории.');">
+          <button class="btn danger" type="submit">Удал.</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a class="btn" href="/categories/new">+ Новая категория</a>
+{% if not categories %}
+  <p class="muted">Пока нет категорий. Создайте первую → <a href="/categories/new">добавить</a>.</p>
+{% endif %}
+{% endblock %}

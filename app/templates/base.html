@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title or 'Инвентаризация' }}</title>
+  <link rel="stylesheet" href="C:\Users\BG\Downloads\home_inventory_fastapi\app\static\styles.css" />
+</head>
+<body>
+<header class="container">
+  <h1>🏠 Домашняя инвентаризация</h1>
+  <nav>
+    <a href="/">Вещи</a>
+    <a href="/categories">Категории</a>
+    <a href="/items/new" class="btn">+ Вещь</a>
+    <a href="/categories/new" class="btn">+ Категория</a>
+    <a href="/export/csv" class="btn">⬇ Экспорт CSV</a>
+  </nav>
+</header>
+<main class="container">
+  {% block content %}{% endblock %}
+</main>
+
+</footer>
+</body>
+</html>

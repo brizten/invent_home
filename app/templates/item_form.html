@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ 'Новая вещь' if not item else 'Редактирование вещи' }}</h2>
+<form method="post" class="grid" style="grid-template-columns: 1fr 1fr; gap: .75rem;">
+  <div>
+    <label>Название *</label>
+    <input type="text" name="name" value="{{ item.name if item else '' }}" required />
+  </div>
+  <div>
+    <label>Категория</label>
+    <select name="category_id">
+      <option value="">—</option>
+      {% for c in categories %}
+        <option value="{{ c.id }}" {% if item and item.category_id==c.id %}selected{% endif %}>{{ c.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div>
+    <label>Место (комната/шкаф/полка)</label>
+    <input type="text" name="location" value="{{ item.location if item else '' }}" />
+  </div>
+  <div>
+    <label>Кол-во</label>
+    <input type="number" name="quantity" min="0" value="{{ item.quantity if item else 1 }}" />
+  </div>
+  <div>
+    <label>Ед. изм.</label>
+    <input type="text" name="unit" value="{{ item.unit if item else 'шт' }}" />
+  </div>
+  <div>
+    <label>Стоимость (за единицу)</label>
+    <input type="number" step="0.01" min="0" name="value" value="{{ item.value if item and item.value is not none else '' }}" />
+  </div>
+  <div>
+    <label>Дата покупки</label>
+    <input type="date" name="purchase_date" value="{{ item.purchase_date if item and item.purchase_date else '' }}" />
+  </div>
+  <div>
+    <label>Фото (URL)</label>
+    <input type="url" name="photo_url" value="{{ item.photo_url if item else '' }}" placeholder="https://..." />
+  </div>
+  <div style="grid-column: 1 / -1;">
+    <label>Заметки</label>
+    <textarea name="notes" rows="3">{{ item.notes if item else '' }}</textarea>
+  </div>
+  <div class="row" style="grid-column: 1 / -1;">
+    <button class="btn" type="submit">Сохранить</button>
+    <a class="btn ghost" href="/">Отмена</a>
+  </div>
+</form>
+{% endblock %}
